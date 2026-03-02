@@ -1,47 +1,346 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Live Agent — Protótipo</title>
-  <style>
-    body{
-      margin:0;
-      font-family:system-ui, sans-serif;
-      background:#0f0f12;
-      color:#fff;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-    }
-    .card{
-      background:#1c1c22;
-      padding:24px;
-      border-radius:16px;
-      max-width:420px;
-      text-align:center;
-      box-shadow:0 20px 50px rgba(0,0,0,.6);
-    }
-    button{
-      margin-top:16px;
-      padding:12px 20px;
-      border:none;
-      border-radius:999px;
-      background:#6c4cff;
-      color:#fff;
-      font-weight:600;
-      cursor:pointer;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab.com</title>
+
+<!-- Google Font Futurista -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= BASE ================= */
+
+:root{
+--bg:#0e0e11;
+--panel:#17171c;
+--soft:#1f1f25;
+--text:#e8e8ea;
+--muted:#8a8a92;
+--border:#2a2a32;
+--accent:#ffffff;
+}
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+font-family:'Inter',sans-serif;
+overflow-x:hidden;
+}
+
+/* ================= LANDING ================= */
+
+#welcomeScreen{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:40px 20px;
+}
+
+.logo{
+font-family:'Orbitron',sans-serif;
+font-size:42px;
+letter-spacing:3px;
+display:flex;
+align-items:center;
+gap:4px;
+}
+
+.logo svg{
+width:26px;
+height:26px;
+fill:white;
+}
+
+.subtitle{
+margin-top:25px;
+font-size:15px;
+color:var(--muted);
+max-width:300px;
+line-height:1.6;
+}
+
+.vision{
+margin-top:20px;
+font-size:13px;
+color:#555;
+max-width:260px;
+}
+
+#startBtn{
+margin-top:40px;
+padding:14px 50px;
+border-radius:40px;
+border:1px solid var(--border);
+background:var(--panel);
+color:var(--text);
+font-size:14px;
+cursor:pointer;
+transition:0.3s;
+}
+
+#startBtn:hover{
+background:var(--soft);
+}
+
+/* ================= APP SCREEN ================= */
+
+#appScreen{
+display:none;
+flex-direction:column;
+height:100vh;
+}
+
+/* Header */
+
+header{
+height:60px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-bottom:1px solid var(--border);
+background:var(--bg);
+font-family:'Orbitron',sans-serif;
+letter-spacing:2px;
+}
+
+/* Menu Button */
+
+#menuButton{
+position:absolute;
+top:18px;
+left:18px;
+width:32px;
+height:32px;
+border-radius:50%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:4px;
+cursor:pointer;
+}
+
+#menuButton span{
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+}
+
+/* Drawer */
+
+#sideDrawer{
+position:fixed;
+top:0;
+left:0;
+width:260px;
+height:100%;
+background:var(--panel);
+transform:translateX(-100%);
+transition:0.3s;
+padding:80px 20px;
+border-right:1px solid var(--border);
+}
+
+#sideDrawer.active{
+transform:translateX(0);
+}
+
+#sideDrawer h3{
+font-weight:500;
+margin-bottom:20px;
+color:var(--muted);
+}
+
+.drawerOption{
+width:100%;
+padding:12px;
+margin-bottom:10px;
+background:var(--soft);
+border:none;
+color:var(--text);
+border-radius:8px;
+cursor:pointer;
+}
+
+/* Chat Area */
+
+#chatArea{
+flex:1;
+padding:20px;
+overflow-y:auto;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.message{
+max-width:85%;
+padding:12px 14px;
+border-radius:14px;
+font-size:14px;
+line-height:1.5;
+}
+
+.lab{
+background:var(--panel);
+align-self:flex-start;
+}
+
+.user{
+background:var(--soft);
+align-self:flex-end;
+}
+
+/* Input Area */
+
+#inputArea{
+border-top:1px solid var(--border);
+padding:15px;
+background:var(--bg);
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.quickOptions{
+display:flex;
+gap:10px;
+}
+
+.quickBtn{
+padding:8px 14px;
+background:var(--soft);
+border:1px solid var(--border);
+border-radius:20px;
+font-size:12px;
+color:var(--text);
+cursor:pointer;
+}
+
+.inputBox{
+display:flex;
+gap:10px;
+}
+
+#userInput{
+flex:1;
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:25px;
+padding:12px 16px;
+color:var(--text);
+resize:none;
+outline:none;
+font-size:14px;
+}
+
+#sendBtn{
+padding:10px 20px;
+border-radius:25px;
+border:none;
+background:white;
+color:black;
+cursor:pointer;
+font-weight:500;
+}
+
+</style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>🎥 Live Agent</h1>
-    <p>Protótipo inicial de um agente com visão de tela e assistência ao vivo.</p>
-    <button onclick="alert('Protótipo ativo')">
-      Iniciar
-    </button>
-  </div>
+
+<!-- ================= LANDING ================= -->
+
+<section id="welcomeScreen">
+
+<div class="logo">
+Lab
+<svg viewBox="0 0 24 24">
+<path d="M9 2v2l-4 7v9a2 2 0 002 2h10a2 2 0 002-2v-9l-4-7V2H9zm-1.5 9h9l3 6H4.5l3-6z"/>
+</svg>
+b.com
+</div>
+
+<p class="subtitle">
+Um laboratório digital para executar, testar e evoluir código em tempo real.
+</p>
+
+<p class="vision">
+Explorando o futuro da engenharia assistida por inteligência artificial.
+</p>
+
+<button id="startBtn">Iniciar</button>
+
+</section>
+
+
+<!-- ================= APP ================= -->
+
+<section id="appScreen">
+
+<div id="menuButton">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<aside id="sideDrawer">
+<h3>Funções</h3>
+<button class="drawerOption">Executar código</button>
+</aside>
+
+<header>
+LAB
+</header>
+
+<main id="chatArea">
+<div class="message lab">
+Olá. Eu sou o Lab. Como posso ajudar?
+</div>
+</main>
+
+<footer id="inputArea">
+
+<div class="quickOptions">
+<button class="quickBtn">Executar código</button>
+</div>
+
+<div class="inputBox">
+<textarea id="userInput" rows="1" placeholder="Digite sua mensagem..."></textarea>
+<button id="sendBtn">Enviar</button>
+</div>
+
+</footer>
+
+</section>
+
+<script>
+
+/* Troca de telas */
+document.getElementById("startBtn").onclick = ()=>{
+document.getElementById("welcomeScreen").style.display="none";
+document.getElementById("appScreen").style.display="flex";
+}
+
+/* Drawer */
+const drawer = document.getElementById("sideDrawer");
+document.getElementById("menuButton").onclick = ()=>{
+drawer.classList.toggle("active");
+}
+
+</script>
+
 </body>
-</html>
+  </html>
