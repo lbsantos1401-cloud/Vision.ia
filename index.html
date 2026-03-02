@@ -1,0 +1,447 @@
+<!DOCTYPE html>  
+<html lang="pt-BR">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Lab.com</title>  
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">  
+
+<style>  
+
+:root{  
+--bg:#0e0e11;  
+--panel:#17171c;  
+--soft:#1f1f25;  
+--text:#e8e8ea;  
+--muted:#8a8a92;  
+--border:#2a2a32;  
+--accent:#ffffff;  
+}  
+
+*{  
+box-sizing:border-box;  
+margin:0;  
+padding:0;  
+}  
+
+body{  
+background:var(--bg);  
+color:var(--text);  
+font-family:'Inter',sans-serif;  
+overflow-x:hidden;  
+}  
+
+#welcomeScreen{  
+height:100vh;  
+display:flex;  
+flex-direction:column;  
+justify-content:center;  
+align-items:center;  
+text-align:center;  
+padding:40px 20px;  
+}  
+
+.logo{  
+font-family:'Orbitron',sans-serif;  
+font-size:42px;  
+letter-spacing:3px;  
+display:flex;  
+align-items:center;  
+gap:4px;  
+}  
+
+.logo svg{  
+width:26px;  
+height:26px;  
+fill:white;  
+}  
+
+.subtitle{  
+margin-top:25px;  
+font-size:15px;  
+color:var(--muted);  
+max-width:300px;  
+line-height:1.6;  
+}  
+
+.vision{  
+margin-top:20px;  
+font-size:13px;  
+color:#555;  
+max-width:260px;  
+}  
+
+#startBtn{  
+margin-top:40px;  
+padding:14px 50px;  
+border-radius:40px;  
+border:1px solid var(--border);  
+background:var(--panel);  
+color:var(--text);  
+font-size:14px;  
+cursor:pointer;  
+transition:0.3s;  
+}  
+
+#startBtn:hover{  
+background:var(--soft);  
+}  
+
+#appScreen{  
+display:none;  
+flex-direction:column;  
+height:100vh;  
+}  
+
+header{  
+height:60px;  
+display:flex;  
+align-items:center;  
+justify-content:center;  
+border-bottom:1px solid var(--border);  
+background:var(--bg);  
+font-family:'Orbitron',sans-serif;  
+letter-spacing:2px;  
+}  
+
+#menuButton{  
+position:absolute;  
+top:18px;  
+left:18px;  
+width:32px;  
+height:32px;  
+border-radius:50%;  
+display:flex;  
+flex-direction:column;  
+justify-content:center;  
+align-items:center;  
+gap:4px;  
+cursor:pointer;  
+}  
+
+#menuButton span{  
+width:4px;  
+height:4px;  
+background:white;  
+border-radius:50%;  
+}  
+
+#sideDrawer{  
+position:fixed;  
+top:0;  
+left:0;  
+width:260px;  
+height:100%;  
+background:var(--panel);  
+transform:translateX(-100%);  
+transition:0.3s;  
+padding:80px 20px;  
+border-right:1px solid var(--border);  
+}  
+
+#sideDrawer.active{  
+transform:translateX(0);  
+}  
+
+/* NOVO BOTÃO DENTRO DA DRAWER */
+#drawerCloseButton{  
+position:absolute;  
+top:18px;  
+left:18px;  
+width:32px;  
+height:32px;  
+border-radius:50%;  
+display:flex;  
+flex-direction:column;  
+justify-content:center;  
+align-items:center;  
+gap:4px;  
+cursor:pointer;  
+}  
+
+#drawerCloseButton span{  
+width:4px;  
+height:4px;  
+background:white;  
+border-radius:50%;  
+}  
+
+#sideDrawer h3{  
+font-weight:500;  
+margin-bottom:20px;  
+color:var(--muted);  
+}  
+
+.drawerOption{  
+width:100%;  
+padding:12px;  
+margin-bottom:10px;  
+background:var(--soft);  
+border:none;  
+color:var(--text);  
+border-radius:8px;  
+cursor:pointer;  
+}  
+
+#chatArea{  
+flex:1;  
+padding:20px;  
+overflow-y:auto;  
+display:flex;  
+flex-direction:column;  
+gap:12px;  
+}  
+
+.message{  
+max-width:85%;  
+padding:12px 14px;  
+border-radius:14px;  
+font-size:14px;  
+line-height:1.5;  
+}  
+
+.lab{  
+background:var(--panel);  
+align-self:flex-start;  
+}  
+
+.user{  
+background:var(--soft);  
+align-self:flex-end;  
+}  
+
+#inputArea{  
+border-top:1px solid var(--border);  
+padding:15px;  
+background:var(--bg);  
+display:flex;  
+flex-direction:column;  
+gap:10px;  
+}  
+
+.quickOptions{  
+display:flex;  
+gap:10px;  
+}  
+
+.quickBtn{  
+padding:8px 14px;  
+background:var(--soft);  
+border:1px solid var(--border);  
+border-radius:20px;  
+font-size:12px;  
+color:var(--text);  
+cursor:pointer;  
+}  
+
+.inputBox{  
+display:flex;  
+gap:10px;  
+}  
+
+#userInput{  
+flex:1;  
+background:var(--panel);  
+border:1px solid var(--border);  
+border-radius:25px;  
+padding:12px 16px;  
+color:var(--text);  
+resize:none;  
+outline:none;  
+font-size:14px;  
+}  
+
+#sendBtn{  
+width:42px;  
+height:42px;  
+border-radius:50%;  
+border:none;  
+background:white;  
+color:black;  
+cursor:pointer;  
+font-weight:500;  
+display:flex;  
+align-items:center;  
+justify-content:center;  
+font-size:18px;  
+}  
+
+/* SANDBOX */
+#sandboxContainer{  
+display:none;  
+height:250px;  
+border-top:1px solid var(--border);  
+}  
+
+#sandboxFrame{  
+width:100%;  
+height:100%;  
+border:none;  
+background:white;  
+}  
+
+</style>  
+</head>  
+
+<body>  
+
+<section id="welcomeScreen">  
+
+<div class="logo">  
+Lab  
+<svg viewBox="0 0 24 24">  
+<path d="M9 2v2l-4 7v9a2 2 0 002 2h10a2 2 0 002-2v-9l-4-7V2H9zm-1.5 9h9l3 6H4.5l3-6z"/>  
+</svg>  
+b.com  
+</div>  
+
+<p class="subtitle">  
+Um laboratório digital para executar, testar e evoluir código em tempo real.  
+</p>  
+
+<p class="vision">  
+Explorando o futuro da engenharia assistida por inteligência artificial.  
+</p>  
+
+<button id="startBtn">Iniciar</button>  
+
+</section>  
+
+<section id="appScreen">  
+
+<div id="menuButton">  
+<span></span>  
+<span></span>  
+<span></span>  
+</div>  
+
+<aside id="sideDrawer">  
+
+<div id="drawerCloseButton">  
+<span></span>  
+<span></span>  
+<span></span>  
+</div>  
+
+<h3>Funções</h3>  
+<button class="drawerOption">Executar código</button>  
+</aside>  
+
+<header>  
+LAB  
+</header>  
+
+<main id="chatArea">  
+<div class="message lab">  
+Olá. Eu sou o Lab. Como posso ajudar?  
+</div>  
+</main>  
+
+<div id="sandboxContainer">  
+<iframe id="sandboxFrame" sandbox="allow-scripts"></iframe>  
+</div>  
+
+<footer id="inputArea">  
+
+<div class="quickOptions">  
+<button class="quickBtn">Executar código</button>  
+</div>  
+
+<div class="inputBox">  
+<textarea id="userInput" rows="1" placeholder="Digite sua mensagem..."></textarea>  
+<button id="sendBtn">➤</button>  
+</div>  
+
+</footer>  
+
+</section>  
+
+<script>  
+
+document.getElementById("startBtn").onclick = ()=>{  
+document.getElementById("welcomeScreen").style.display="none";  
+document.getElementById("appScreen").style.display="flex";  
+}  
+
+const drawer = document.getElementById("sideDrawer");  
+document.getElementById("menuButton").onclick = ()=>{  
+drawer.classList.toggle("active");  
+}  
+
+document.getElementById("drawerCloseButton").onclick = ()=>{  
+drawer.classList.remove("active");  
+}  
+
+let mode = "normal";  
+
+const chatArea = document.getElementById("chatArea");  
+const userInput = document.getElementById("userInput");  
+const sendBtn = document.getElementById("sendBtn");  
+const quickBtn = document.querySelector(".quickBtn");  
+const drawerBtn = document.querySelector(".drawerOption");  
+
+function addMessage(type, text){  
+const div = document.createElement("div");  
+div.classList.add("message", type);  
+div.textContent = text;  
+chatArea.appendChild(div);  
+chatArea.scrollTop = chatArea.scrollHeight;  
+}  
+
+function activateCodeMode(){  
+mode = "code";  
+addMessage("lab",  
+"Para executar seu código, cole abaixo um HTML, CSS ou JavaScript válido."  
+);  
+userInput.placeholder = "Cole seu código aqui...";  
+}  
+
+quickBtn.addEventListener("click", activateCodeMode);  
+drawerBtn.addEventListener("click", activateCodeMode);  
+
+sendBtn.addEventListener("click", handleSend);  
+
+userInput.addEventListener("keypress", function(e){  
+if(e.key === "Enter" && !e.shiftKey){  
+e.preventDefault();  
+handleSend();  
+}  
+});  
+
+function handleSend(){  
+const text = userInput.value.trim();  
+if(!text) return;  
+
+addMessage("user", text);  
+userInput.value = "";  
+
+if(mode === "code"){  
+executeInSandbox(text);  
+mode = "normal";  
+userInput.placeholder = "Digite sua mensagem...";  
+}else{  
+addMessage("lab","Função ainda não implementada nesta versão.");  
+}  
+}  
+
+/* ================= V3 MÓDULO SANDBOX ================= */  
+
+function executeInSandbox(code){  
+const container = document.getElementById("sandboxContainer");  
+const frame = document.getElementById("sandboxFrame");  
+
+container.style.display = "block";  
+
+const doc = frame.contentDocument || frame.contentWindow.document;  
+doc.open();  
+doc.write(code);  
+doc.close();  
+
+addMessage("lab","Código executado em ambiente sandbox isolado.");  
+}  
+
+</script>  
+
+</body>  
+</html>
