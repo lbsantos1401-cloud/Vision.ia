@@ -5,17 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lab.com</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
 --bg:#0e0e11;
---panel:#17171c;
---soft:#1f1f25;
+--panel:#1a1a1f;
+--soft:#22232a;
 --text:#e8e8ea;
---muted:#8a8a92;
---border:#2a2a32;
+--muted:#9a9aa3;
+--border:#2d2e36;
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -39,32 +39,6 @@ text-align:center;
 padding:40px 20px;
 }
 
-.logo{
-font-family:'Orbitron',sans-serif;
-font-size:42px;
-letter-spacing:3px;
-display:flex;
-align-items:center;
-gap:4px;
-}
-
-.logo svg{width:26px;height:26px;fill:white;}
-
-.subtitle{
-margin-top:25px;
-font-size:15px;
-color:var(--muted);
-max-width:300px;
-line-height:1.6;
-}
-
-.vision{
-margin-top:20px;
-font-size:13px;
-color:#555;
-max-width:260px;
-}
-
 #startBtn{
 margin-top:40px;
 padding:14px 50px;
@@ -72,12 +46,8 @@ border-radius:40px;
 border:1px solid var(--border);
 background:var(--panel);
 color:var(--text);
-font-size:14px;
 cursor:pointer;
-transition:.3s;
 }
-
-#startBtn:hover{background:var(--soft);}
 
 /* CHAT */
 
@@ -85,7 +55,6 @@ transition:.3s;
 display:none;
 flex-direction:column;
 height:100vh;
-transition:.4s ease;
 }
 
 header{
@@ -94,8 +63,6 @@ display:flex;
 align-items:center;
 justify-content:center;
 border-bottom:1px solid var(--border);
-font-family:'Orbitron',sans-serif;
-letter-spacing:2px;
 }
 
 #chatArea{
@@ -112,10 +79,9 @@ max-width:85%;
 padding:12px 14px;
 border-radius:14px;
 font-size:14px;
-line-height:1.5;
 }
 
-.lab{background:var(--panel);align-self:flex-start;}
+.lab{background:var(--panel);}
 .user{background:var(--soft);align-self:flex-end;}
 
 .openBtn{
@@ -125,16 +91,12 @@ background:white;
 color:black;
 border:none;
 border-radius:20px;
-cursor:pointer;
 font-size:12px;
 }
-
-/* INPUT */
 
 #inputArea{
 border-top:1px solid var(--border);
 padding:15px;
-background:var(--bg);
 display:flex;
 gap:10px;
 }
@@ -147,8 +109,6 @@ border-radius:25px;
 padding:12px 16px;
 color:var(--text);
 resize:none;
-outline:none;
-font-size:14px;
 }
 
 #sendBtn{
@@ -157,11 +117,9 @@ height:42px;
 border-radius:50%;
 border:none;
 background:white;
-cursor:pointer;
-font-size:18px;
 }
 
-/* STUDIO */
+/* STUDIO MOBILE */
 
 #studioScreen{
 position:absolute;
@@ -169,91 +127,85 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:var(--bg);
+background:white;
 display:none;
 flex-direction:column;
-animation:fadeIn .4s ease;
-}
-
-@keyframes fadeIn{
-from{opacity:0}
-to{opacity:1}
 }
 
 .studioHeader{
-height:60px;
+height:55px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding:0 20px;
-border-bottom:1px solid var(--border);
-}
-
-.studioBody{
-flex:1;
-display:flex;
-}
-
-.codeView{
-width:50%;
+padding:0 15px;
 background:#111;
-color:#0f0;
-padding:20px;
-overflow:auto;
-font-family:monospace;
-white-space:pre-wrap;
-}
-
-#studioFrame{
-width:50%;
-border:none;
-background:white;
+color:white;
 }
 
 .iconBtn{
 width:36px;
 height:36px;
 border-radius:50%;
-border:1px solid var(--border);
+background:#222;
 display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
 }
 
-/* MODAL */
-
-#editorModal{
-position:absolute;
-top:0;
-left:0;
+#studioFrame{
+flex:1;
+border:none;
 width:100%;
-height:100%;
-background:rgba(0,0,0,.7);
-display:none;
-align-items:center;
-justify-content:center;
 }
 
-.modalContent{
-width:80%;
-height:80%;
+/* EDITOR PANEL */
+
+#editorPanel{
+position:absolute;
+top:55px;
+right:-100%;
+width:60%;
+height:calc(100% - 55px);
 background:var(--panel);
+transition:.3s;
 display:flex;
 flex-direction:column;
-padding:20px;
+border-left:1px solid var(--border);
+}
+
+#editorPanel.active{
+right:0;
 }
 
 #editorArea{
 flex:1;
-background:#111;
-color:#0f0;
+background:var(--soft);
+color:var(--text);
 border:none;
-outline:none;
+padding:15px;
 resize:none;
+outline:none;
 font-family:monospace;
-padding:10px;
+font-size:13px;
 }
+
+#editorActions{
+padding:10px;
+display:none;
+gap:10px;
+}
+
+.actionBtn{
+flex:1;
+padding:8px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.save{background:white;color:black;}
+.cancel{background:#333;color:white;}
 
 </style>
 </head>
@@ -261,15 +213,7 @@ padding:10px;
 <body>
 
 <section id="welcomeScreen">
-<div class="logo">
-Lab
-<svg viewBox="0 0 24 24">
-<path d="M9 2v2l-4 7v9a2 2 0 002 2h10a2 2 0 002-2v-9l-4-7V2H9z"/>
-</svg>
-b.com
-</div>
-<p class="subtitle">Um laboratório digital para executar e evoluir código.</p>
-<p class="vision">Explorando o futuro da engenharia assistida por IA.</p>
+<h2>Lab.com</h2>
 <button id="startBtn">Iniciar</button>
 </section>
 
@@ -279,7 +223,7 @@ b.com
 <div class="message lab">Olá. Eu sou o Lab.</div>
 </main>
 <footer id="inputArea">
-<textarea id="userInput" rows="1" placeholder="Cole seu código..."></textarea>
+<textarea id="userInput" placeholder="Cole seu código..."></textarea>
 <button id="sendBtn">➤</button>
 </footer>
 </section>
@@ -289,75 +233,62 @@ b.com
 <div class="iconBtn" id="backBtn">←</div>
 <div class="iconBtn" id="editBtn">✎</div>
 </div>
-<div class="studioBody">
-<div class="codeView" id="codeView"></div>
 <iframe id="studioFrame" sandbox="allow-scripts"></iframe>
-</div>
 </section>
 
-<div id="editorModal">
-<div class="modalContent">
+<div id="editorPanel">
 <textarea id="editorArea"></textarea>
-<button id="saveEdit">Salvar e Executar</button>
+<div id="editorActions">
+<button class="actionBtn save">Salvar</button>
+<button class="actionBtn cancel">Cancelar</button>
 </div>
 </div>
 
 <script>
 
-let currentCode = "";
+let currentCode="";
+let editedCode="";
 
-const welcome = document.getElementById("welcomeScreen");
-const app = document.getElementById("appScreen");
-const studio = document.getElementById("studioScreen");
-const chatArea = document.getElementById("chatArea");
-const userInput = document.getElementById("userInput");
+const welcome=document.getElementById("welcomeScreen");
+const app=document.getElementById("appScreen");
+const studio=document.getElementById("studioScreen");
+const frame=document.getElementById("studioFrame");
+const editorPanel=document.getElementById("editorPanel");
+const editorArea=document.getElementById("editorArea");
+const actions=document.getElementById("editorActions");
 
-document.getElementById("startBtn").onclick = ()=>{
+document.getElementById("startBtn").onclick=()=>{
 welcome.style.display="none";
 app.style.display="flex";
 };
 
-document.getElementById("sendBtn").onclick = ()=>{
-const text = userInput.value.trim();
+document.getElementById("sendBtn").onclick=()=>{
+const text=document.getElementById("userInput").value.trim();
 if(!text) return;
-
-currentCode = text;
-
-addMessage("user", text);
-addOpenButton();
-
-userInput.value="";
+currentCode=text;
+addMessage("user",text);
+addOpen();
+document.getElementById("userInput").value="";
 };
 
 function addMessage(type,text){
 const div=document.createElement("div");
 div.classList.add("message",type);
 div.textContent=text;
-chatArea.appendChild(div);
-chatArea.scrollTop=chatArea.scrollHeight;
+document.getElementById("chatArea").appendChild(div);
 }
 
-function addOpenButton(){
+function addOpen(){
 const div=document.createElement("div");
 div.classList.add("message","lab");
 div.innerHTML='Código analisado.<br><button class="openBtn" onclick="openStudio()">Abrir</button>';
-chatArea.appendChild(div);
+document.getElementById("chatArea").appendChild(div);
 }
 
 function openStudio(){
 app.style.display="none";
 studio.style.display="flex";
-
-document.getElementById("codeView").textContent=currentCode;
-executeStudio(currentCode);
-}
-
-function executeStudio(code){
-const frame=document.getElementById("studioFrame");
-const doc=frame.contentDocument||frame.contentWindow.document;
-doc.open();
-doc.write(code);
-doc.close();
+frame.srcdoc=currentCode;
 }
 
 document.getElementById("backBtn").onclick=()=>{
@@ -366,15 +297,31 @@ app.style.display="flex";
 };
 
 document.getElementById("editBtn").onclick=()=>{
-document.getElementById("editorModal").style.display="flex";
-document.getElementById("editorArea").value=currentCode;
+editorPanel.classList.toggle("active");
+editorArea.value=currentCode;
+editedCode=currentCode;
+actions.style.display="none";
 };
 
-document.getElementById("saveEdit").onclick=()=>{
-currentCode=document.getElementById("editorArea").value;
-document.getElementById("editorModal").style.display="none";
-document.getElementById("codeView").textContent=currentCode;
-executeStudio(currentCode);
+editorArea.addEventListener("input",()=>{
+if(editorArea.value!==currentCode){
+actions.style.display="flex";
+}else{
+actions.style.display="none";
+}
+});
+
+document.querySelector(".save").onclick=()=>{
+currentCode=editorArea.value;
+frame.srcdoc=currentCode;
+actions.style.display="none";
+editorPanel.classList.remove("active");
+};
+
+document.querySelector(".cancel").onclick=()=>{
+editorArea.value=currentCode;
+actions.style.display="none";
+editorPanel.classList.remove("active");
 };
 
 </script>
