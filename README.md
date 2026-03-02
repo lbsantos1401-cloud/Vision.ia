@@ -1,2 +1,2 @@
-# Vision.ia
-Agente de geração e edição de imagens.
+# Lab.com
+Laboratório Virtual.
