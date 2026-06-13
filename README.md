@@ -1,2 +1,0 @@
-# Lab.com
-Laboratório Virtual.
