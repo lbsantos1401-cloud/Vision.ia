@@ -1,8 +1,3 @@
-let moveForward = false;
-let turnLeft = false;
-let turnRight = false;
-
-
 import * as THREE from
 'https://unpkg.com/three@0.166.1/build/three.module.js';
 
@@ -16,9 +11,15 @@ let renderer;
 let controller;
 
 let reticle;
+
 let hitTestSource = null;
 let hitTestSourceRequested = false;
+
 let placedCube = null;
+
+let moveForward = false;
+let turnLeft = false;
+let turnRight = false;
 
 init();
 
@@ -63,6 +64,8 @@ scene.add(light);
 
 createReticle();
 
+setupControls();
+
 controller =
 renderer.xr.getController(0);
 
@@ -94,12 +97,82 @@ document
 .addEventListener(
 'click',
 ()=>{
+
 button.click();
+
+document
+.getElementById(
+'controls'
+)
+.style.display =
+'flex';
+
 }
 );
 
 renderer.setAnimationLoop(
 render
+);
+
+}
+
+function setupControls(){
+
+const btnForward =
+document.getElementById(
+'forward'
+);
+
+const btnLeft =
+document.getElementById(
+'left'
+);
+
+const btnRight =
+document.getElementById(
+'right'
+);
+
+btnForward.addEventListener(
+'touchstart',
+()=>{
+moveForward = true;
+}
+);
+
+btnForward.addEventListener(
+'touchend',
+()=>{
+moveForward = false;
+}
+);
+
+btnLeft.addEventListener(
+'touchstart',
+()=>{
+turnLeft = true;
+}
+);
+
+btnLeft.addEventListener(
+'touchend',
+()=>{
+turnLeft = false;
+}
+);
+
+btnRight.addEventListener(
+'touchstart',
+()=>{
+turnRight = true;
+}
+);
+
+btnRight.addEventListener(
+'touchend',
+()=>{
+turnRight = false;
+}
 );
 
 }
@@ -220,64 +293,6 @@ source;
 }
 );
 
-const btnForward =
-document.getElementById(
-'forward'
-);
-
-const btnLeft =
-document.getElementById(
-'left'
-);
-
-const btnRight =
-document.getElementById(
-'right'
-);
-
-btnForward.addEventListener(
-'touchstart',
-()=>{
-moveForward = true;
-}
-);
-
-btnForward.addEventListener(
-'touchend',
-()=>{
-moveForward = false;
-}
-);
-
-btnLeft.addEventListener(
-'touchstart',
-()=>{
-turnLeft = true;
-}
-);
-
-btnLeft.addEventListener(
-'touchend',
-()=>{
-turnLeft = false;
-}
-);
-
-btnRight.addEventListener(
-'touchstart',
-()=>{
-turnRight = true;
-}
-);
-
-btnRight.addEventListener(
-'touchend',
-()=>{
-turnRight = false;
-}
-);
-
-
 }
 );
 
@@ -331,9 +346,13 @@ pose.transform.matrix
 
 }
 
-if(placedCube){
+if(
+placedCube
+){
 
-if(moveForward){
+if(
+moveForward
+){
 
 placedCube.translateZ(
 -0.01
@@ -341,14 +360,18 @@ placedCube.translateZ(
 
 }
 
-if(turnLeft){
+if(
+turnLeft
+){
 
 placedCube.rotation.y +=
 0.03;
 
 }
 
-if(turnRight){
+if(
+turnRight
+){
 
 placedCube.rotation.y -=
 0.03;
