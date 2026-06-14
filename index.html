@@ -5,19 +5,43 @@
 <meta name="viewport"
 content="width=device-width,initial-scale=1.0">
 
-<title>AR RC V0.1</title>
+<title>AR RC V0.3</title>
 
 <style>
+
+body{
+margin:0;
+overflow:hidden;
+font-family:sans-serif;
+}
+
+#enterAR{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+z-index:999;
+
+padding:15px 30px;
+
+border:none;
+border-radius:10px;
+
+font-size:18px;
+
+background:#ff3b30;
+color:white;
+}
 
 #controls{
 
 position:fixed;
 
-bottom:30px;
+bottom:120px;
 
 width:100%;
 
-display:flex;
+display:none;
 
 justify-content:center;
 
@@ -44,40 +68,14 @@ opacity:0.8;
 
 }
 
-
-
-
-body{
-margin:0;
-overflow:hidden;
-font-family:sans-serif;
-}
-
-#enterAR{
-position:fixed;
-bottom:30px;
-left:50%;
-transform:translateX(-50%);
-z-index:999;
-
-padding:15px 30px;
-
-border:none;
-border-radius:10px;
-
-font-size:18px;
-background:#ff3b30;
-color:white;
-}
-
 </style>
 </head>
+
 <body>
 
 <button id="enterAR">
 Entrar em AR
 </button>
-
 
 <div id="controls">
 
@@ -99,6 +97,3 @@ Entrar em AR
 
 </body>
 </html>
-
-
-
