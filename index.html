@@ -9,6 +9,44 @@ content="width=device-width,initial-scale=1.0">
 
 <style>
 
+#controls{
+
+position:fixed;
+
+bottom:30px;
+
+width:100%;
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+z-index:9999;
+
+}
+
+#controls button{
+
+width:70px;
+height:70px;
+
+font-size:30px;
+
+border:none;
+
+border-radius:50%;
+
+background:white;
+
+opacity:0.8;
+
+}
+
+
+
+
 body{
 margin:0;
 overflow:hidden;
@@ -40,7 +78,27 @@ color:white;
 Entrar em AR
 </button>
 
+
+<div id="controls">
+
+<button id="left">
+◀
+</button>
+
+<button id="forward">
+▲
+</button>
+
+<button id="right">
+▶
+</button>
+
+</div>
+
 <script type="module" src="./main.js"></script>
 
 </body>
 </html>
+
+
+
