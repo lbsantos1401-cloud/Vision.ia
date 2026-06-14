@@ -98,10 +98,9 @@ renderer.setAnimationLoop(render);
 
 function createReticle(){
 
-const geometry =
 new THREE.RingGeometry(
-0.08,
-0.12,
+0.03,
+0.04,
 32
 );
 
@@ -160,22 +159,7 @@ return car;
 
 function onSelect(){
 
-if(!reticle.visible)
-return;
-
-if(placedCube)
-return;
-
-placedCube =
-createCar();
-
-placedCube.position.setFromMatrixPosition(
-reticle.matrix
-);
-
-scene.add(
-placedCube
-);
+alert("TOQUE FUNCIONOU");
 
 }
 
