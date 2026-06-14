@@ -134,9 +134,37 @@ scene.add(reticle);
 
 function onSelect(){
 
-alert(
-'TOQUE FUNCIONOU'
+if(!reticle.visible)
+return;
+
+const car =
+new THREE.Group();
+
+const body =
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+0.08,
+0.04,
+0.12
+),
+
+new THREE.MeshStandardMaterial({
+color:0xff3333
+})
+
 );
+
+body.position.y =
+0.03;
+
+car.add(body);
+
+car.position.setFromMatrixPosition(
+reticle.matrix
+);
+
+scene.add(car);
 
 }
 
