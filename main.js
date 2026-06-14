@@ -99,10 +99,14 @@ renderer.setAnimationLoop(render);
 function createReticle(){
 
 const geometry =
-new THREE.BoxGeometry(
-2,
-2,
-2
+new THREE.RingGeometry(
+0.08,
+0.12,
+32
+);
+
+geometry.rotateX(
+-Math.PI / 2
 );
 
 const material =
@@ -116,50 +120,21 @@ geometry,
 material
 );
 
-reticle.position.set(
-0,
--1,
--3
-);
+reticle.matrixAutoUpdate =
+false;
+
+reticle.visible =
+false;
 
 scene.add(reticle);
-console.log("Cubo criado");
-console.log(reticle.position);
+
 }
+
 
 function onSelect(){
 
-if(!reticle.visible) return;
-
-if(placedCube) return;
-
-const geometry =
-new THREE.BoxGeometry(
-0.2,
-0.1,
-0.3
-);
-
-const material =
-new THREE.MeshStandardMaterial({
-color:0xff0000
-});
-
-placedCube =
-new THREE.Mesh(
-geometry,
-material
-);
-
-placedCube.position.setFromMatrixPosition(
-reticle.matrix
-);
-
-scene.add(placedCube);
-
-console.log(
-'Cubo criado'
-);
+if(!reticle.visible)
+return;
 
 }
 
@@ -259,4 +234,4 @@ scene,
 camera
 );
 
-  }
+}
