@@ -14,8 +14,6 @@ let reticle;
 let hitTestSource = null;
 let hitTestSourceRequested = false;
 
-let placedCube = null;
-
 init();
 
 function init(){
@@ -79,9 +77,11 @@ requiredFeatures:[
 }
 );
 
-button.style.display='none';
+button.style.display = 'none';
 
-document.body.appendChild(button);
+document.body.appendChild(
+button
+);
 
 document
 .getElementById('enterAR')
@@ -92,12 +92,15 @@ button.click();
 }
 );
 
-renderer.setAnimationLoop(render);
+renderer.setAnimationLoop(
+render
+);
 
 }
 
 function createReticle(){
 
+const geometry =
 new THREE.RingGeometry(
 0.03,
 0.04,
@@ -128,38 +131,12 @@ false;
 scene.add(reticle);
 
 }
-function createCar(){
-
-const car =
-new THREE.Group();
-
-const body =
-new THREE.Mesh(
-
-new THREE.BoxGeometry(
-0.25,
-0.08,
-0.4
-),
-
-new THREE.MeshStandardMaterial({
-color:0xff3333
-})
-
-);
-
-body.position.y =
-0.05;
-
-car.add(body);
-
-return car;
-
-}
 
 function onSelect(){
 
-alert("TOQUE FUNCIONOU");
+alert(
+'TOQUE FUNCIONOU'
+);
 
 }
 
@@ -197,8 +174,10 @@ space
 )
 .then(
 (source)=>{
+
 hitTestSource =
 source;
+
 }
 );
 
@@ -208,9 +187,13 @@ source;
 session.addEventListener(
 'end',
 ()=>{
+
 hitTestSourceRequested =
 false;
-hitTestSource = null;
+
+hitTestSource =
+null;
+
 }
 );
 
@@ -244,9 +227,6 @@ true;
 reticle.matrix.fromArray(
 pose.transform.matrix
 );
-
-}else{
-
 
 }
 
