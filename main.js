@@ -129,12 +129,53 @@ false;
 scene.add(reticle);
 
 }
+function createCar(){
 
+const car =
+new THREE.Group();
+
+const body =
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+0.25,
+0.08,
+0.4
+),
+
+new THREE.MeshStandardMaterial({
+color:0xff3333
+})
+
+);
+
+body.position.y =
+0.05;
+
+car.add(body);
+
+return car;
+
+}
 
 function onSelect(){
 
 if(!reticle.visible)
 return;
+
+if(placedCube)
+return;
+
+placedCube =
+createCar();
+
+placedCube.position.setFromMatrixPosition(
+reticle.matrix
+);
+
+scene.add(
+placedCube
+);
 
 }
 
