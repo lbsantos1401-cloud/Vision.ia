@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SolTec Cloud - Monitoramento de Energia</title>
+  <!-- CSS Principal -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Fonte Inter do Google Fonts para visual moderno -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Container principal centralizado estilo Mobile/App -->
+  <div class="app-container">
+
+    <!-- ========================================== -->
+    <!-- 1. TELA DE LOGIN                           -->
+    <!-- ========================================== -->
+    <section id="screen-login" class="screen active">
+      <div class="brand-header">
+        <h1 class="brand-title">SOLTEC <span class="brand-accent">CLOUD</span></h1>
+        <p class="brand-subtitle">Monitoramento inteligente<br>de energia.</p>
+      </div>
+
+      <form id="form-login" class="form-container">
+        <div class="input-group">
+          <label for="login-email">Email</label>
+
+            <span class="icon">✉</span>
+            <input type="email" id="login-email" placeholder="seu@email.com" required>
+        </div>
+
+        <div class="input-group">
+          <label for="login-pin">PIN de 6 dígitos</label>
+
+            <span class="icon">🔒</span>
+            <input type="password" id="login-pin" maxlength="6" placeholder="••••••" required>
+        </div>
+
+        <div class="forgot-pin">
+          <a href="#" id="btn-forgot-pin">Esqueci meu PIN</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Entrar</button>
+
+        <div class="divider">
+          <span>ou</span>
+        </div>
+
+        <button type="button" id="btn-go-register" class="btn btn-outline">Criar conta</button>
+      </form>
+
+      <footer class="app-footer">
+        <p>© 2026 SolTec Cloud. Todos os direitos reservados.</p>
+      </footer>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2. TELA DE CADASTRO                        -->
+    <!-- ========================================== -->
+    <section id="screen-register" class="screen hidden">
+      <div class="screen-header">
+        <button id="btn-back-login" class="btn-back">←</button>
+      </div>
+
+      <div class="brand-header">
+        <h1 class="brand-title">SOLTEC <span class="brand-accent">CLOUD</span></h1>
+        <p class="brand-subtitle">Crie sua conta.</p>
+      </div>
+
+      <form id="form-register" class="form-container">
+        <div class="input-group">
+          <label for="reg-name">Nome completo</label>
+
+            <span class="icon">👤</span>
+            <input type="text" id="reg-name" placeholder="Seu nome" required>
+        </div>
+
+        <div class="input-group">
+          <label for="reg-email">Email</label>
+
+            <span class="icon">✉</span>
+            <input type="email" id="reg-email" placeholder="seu@email.com" required>
+        </div>
+
+        <div class="input-group">
+          <label for="reg-pin">PIN de 6 dígitos</label>
+
+            <span class="icon">🔒</span>
+            <input type="password" id="reg-pin" maxlength="6" placeholder="••••••" required>
+        </div>
+
+        <div class="input-group">
+          <label for="reg-confirm-pin">Confirmar PIN</label>
+
+            <span class="icon">🔒</span>
+            <input type="password" id="reg-confirm-pin" maxlength="6" placeholder="••••••" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Criar conta</button>
+
+        <div class="switch-link">
+          <span>Já possui conta? <a href="#" id="link-go-login">Entrar</a></span>
+        </div>
+      </form>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. DASHBOARD PRINCIPAL                     -->
+    <!-- ========================================== -->
+    <section id="screen-dashboard" class="screen hidden">
+      <!-- Cabeçalho do Dashboard -->
+      <header class="dashboard-header">
+        <h2 class="brand-title-sm">SOLTEC <span class="brand-accent">CLOUD</span></h2>
+        <button id="btn-open-settings" class="btn-icon">⚙</button>
+      </header>
+
+      <!-- Diagrama de Conexão de Energia -->
+      <div class="energy-diagram">
+        <div class="node node-grid">
+          <div class="node-icon">🗼</div>
+          <span>Rede Elétrica</span>
+        </div>
+
+        <!-- Linha do Fluxo -->
+        <div id="energy-line" class="energy-line normal">
+          <div class="dots"></div>
+          <div id="status-cross" class="cross hidden">✖</div>
+        </div>
+
+        <div class="node node-home">
+          <div class="node-icon">🏠</div>
+          <span>Residência</span>
+        </div>
+      </div>
+
+      <!-- Card de Status do Sistema -->
+      <div id="card-status" class="status-card normal">
+        <div class="status-title-row">
+          <span id="status-indicator-dot" class="dot green"></span>
+          <h3 id="status-title">Energia Normal</h3>
+        </div>
+        <p id="status-description">Energia da concessionária disponível.</p>
+      </div>
+
+      <!-- Informações do Dispositivo -->
+      <div class="info-card">
+        <div class="info-row">
+          <div>
+            <strong>Grid Sentinel</strong>
+            <p class="sub-text">GS-000001</p>
+          </div>
+          <span class="badge online">📶 Online</span>
+        </div>
+        <div class="info-row border-top">
+          <span class="sub-text">Última atualização</span>
+          <span class="badge-time">Agora</span>
+        </div>
+      </div>
+
+      <!-- Controlo de Teste de Modos (Normal vs Falta de Energia) -->
+      <div class="simulation-bar">
+        <span>Simular Estado:</span>
+        <button id="btn-toggle-energy" class="btn-sm">Alternar p/ Falta de Energia</button>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4. JANELA DE CONFIGURAÇÕES (MODAL)         -->
+    <!-- ========================================== -->
+    <div id="modal-settings" class="modal-overlay hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Configurações</h3>
+          <button id="btn-close-settings" class="btn-close">✕</button>
+        </div>
+
+        <!-- Perfil do Usuário -->
+        <div class="user-profile">
+          <div class="avatar">👤</div>
+          <div class="user-details">
+            <h4 id="user-display-name">Lucas Silva</h4>
+            <p id="user-display-email">lucas@email.com</p>
+          </div>
+        </div>
+
+        <!-- Lista de Opções e Informações -->
+        <div class="settings-list">
+          <div class="settings-item">
+            <span class="item-icon">📱</span>
+            <div class="item-text">
+              <strong>Grid Sentinel</strong>
+              <p>GS-000001</p>
+            </div>
+          </div>
+
+          <div class="settings-item action">
+            <span class="item-icon">🔲</span>
+            <div class="item-text">
+              <strong>Firmware</strong>
+              <p>1.0.0</p>
+            </div>
+            <span class="arrow">›</span>
+          </div>
+
+          <div class="settings-item action">
+            <span class="item-icon">📶</span>
+            <div class="item-text">
+              <strong>Wi-Fi</strong>
+              <p class="status-green">Conectado</p>
+            </div>
+            <span class="arrow">›</span>
+          </div>
+
+          <div class="settings-item action" id="btn-test-push">
+            <span class="item-icon">🔔</span>
+            <div class="item-text">
+              <strong>Testar Push</strong>
+              <p>Enviar mensagem de teste</p>
+            </div>
+          </div>
+
+          <button id="btn-test-push-main" class="btn btn-primary btn-push">Testar Push</button>
+
+          <button id="btn-logout" class="btn-logout">
+            <span class="icon">↳</span> Sair da conta
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JavaScript Principal -->
+  <script src="app.js"></script>
+</body>
+</html>
