@@ -1,0 +1,544 @@
+/* ==========================================================================
+   VARIÁVEIS DE CORES E CONFIGURAÇÕES GERAIS (SOLTEC CLOUD)
+   ========================================================================== */
+:root {
+  --bg-color: #0b0f19;          /* Fundo azul ultra escuro/preto */
+  --card-bg: #131b2e;         /* Fundo dos cartões */
+  --input-bg: #1a243b;        /* Fundo dos inputs */
+  --border-color: #263554;    /* Bordas sutis */
+  
+  --primary-blue: #0066ff;    /* Azul do botão principal */
+  --primary-hover: #0052cc;
+  
+  --status-green: #10b981;    /* Verde para energia normal / conectado */
+  --status-red: #ef4444;      /* Vermelho para falta de energia */
+  
+  --text-main: #ffffff;       /* Texto principal */
+  --text-muted: #94a3b8;      /* Texto secundário */
+  
+  --font-family: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+}
+
+body {
+  background-color: #05070c;
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Container responsivo estilo tela de smartphone */
+.app-container {
+  width: 100%;
+  max-width: 400px;
+  height: 100vh;
+  max-height: 840px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Utilitário para ocultar telas */
+.hidden {
+  display: none !important;
+}
+
+.screen {
+  padding: 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* ==========================================================================
+   MARCA E CABEÇALHOS
+   ========================================================================== */
+.brand-header {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.brand-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.brand-title-sm {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.brand-accent {
+  color: var(--primary-blue);
+}
+
+.brand-subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   FORMULÁRIOS E INPUTS
+   ========================================================================== */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-group label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper .icon {
+  position: absolute;
+  left: 12px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 12px 12px 38px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-wrapper input:focus {
+  border-color: var(--primary-blue);
+}
+
+.forgot-pin {
+  text-align: right;
+  margin-top: -8px;
+}
+
+.forgot-pin a {
+  color: var(--primary-blue);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   BOTÕES
+   ========================================================================== */
+.btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background-color: var(--primary-blue);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--primary-blue);
+  color: var(--primary-blue);
+}
+
+.btn-outline:hover {
+  background-color: rgba(0, 102, 255, 0.1);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  margin: 10px 0;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.divider span {
+  padding: 0 10px;
+}
+
+.switch-link {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 15px;
+}
+
+.switch-link a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--text-main);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.app-footer {
+  text-align: center;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+/* ==========================================================================
+   DASHBOARD E FLUXO DE ENERGIA
+   ========================================================================== */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  color: var(--text-main);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.energy-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.node-icon {
+  font-size: 40px;
+}
+
+.node span {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.energy-line {
+  height: 80px;
+  width: 2px;
+  margin: 10px 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.energy-line.normal {
+  border-left: 2px dashed var(--status-green);
+}
+
+.energy-line.fault {
+  border-left: 2px dashed var(--status-red);
+}
+
+.cross {
+  color: var(--status-red);
+  font-size: 24px;
+  font-weight: bold;
+  background-color: var(--bg-color);
+  padding: 2px;
+}
+
+.status-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.status-card.normal {
+  border-left: 4px solid var(--status-green);
+}
+
+.status-card.fault {
+  border-left: 4px solid var(--status-red);
+  background-color: rgba(239, 68, 68, 0.08);
+}
+
+.status-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot.green { background-color: var(--status-green); }
+.dot.red { background-color: var(--status-red); }
+
+.status-card p {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.info-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.info-row.border-top {
+  border-top: 1px solid var(--border-color);
+  margin-top: 8px;
+  padding-top: 12px;
+}
+
+.sub-text {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.badge {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+
+.badge.online {
+  color: var(--status-green);
+}
+
+.badge-time {
+  font-size: 12px;
+  color: var(--status-green);
+}
+
+.simulation-bar {
+  margin-top: auto;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.simulation-bar span {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.btn-sm {
+  background-color: var(--input-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   MODAL DE CONFIGURAÇÕES
+   ========================================================================== */
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 100;
+}
+
+.modal-content {
+  width: 85%;
+  height: 100%;
+  background-color: #111827;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  color: var(--text-main);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  background-color: var(--primary-blue);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.user-details h4 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.user-details p {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.settings-item.action {
+  cursor: pointer;
+}
+
+.item-icon {
+  font-size: 18px;
+}
+
+.item-text {
+  flex: 1;
+}
+
+.item-text strong {
+  display: block;
+  font-size: 13px;
+}
+
+.item-text p {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.status-green {
+  color: var(--status-green) !important;
+}
+
+.arrow {
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+.btn-push {
+  margin-top: 10px;
+}
+
+.btn-logout {
+  margin-top: auto;
+  background: none;
+  border: none;
+  color: var(--status-red);
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 12px 0;
+}
