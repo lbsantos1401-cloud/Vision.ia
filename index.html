@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="Painel demonstrativo do Localizador GPS">
+  <title>Localizador GPS</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <main class="auth-shell" id="authScreen">
+      <section class="auth-card">
+        <div class="brand-mark">⌖</div>
+        <p class="eyebrow">LOCALIZADOR GPS</p>
+        <h1 id="authTitle">Bem-vindo de volta</h1>
+        <p class="muted" id="authSubtitle">Entre na sua conta para acessar os dispositivos vinculados.</p>
+        <form id="authForm">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" autocomplete="username" placeholder="voce@email.com" required>
+          <label for="password">Senha</label>
+          <input id="password" type="password" autocomplete="current-password" placeholder="Sua senha" minlength="6" required>
+          <button class="primary full" id="authSubmit" type="submit">Entrar</button>
+        </form>
+        <p class="switch-auth" id="authSwitch">Ainda não tem conta? <button class="text-button" id="switchMode" type="button">Criar administrador</button></p>
+        <div class="demo-note"><strong>Protótipo V1:</strong> cadastro e acesso funcionam somente neste navegador. Não use uma senha real.</div>
+      </section>
+    </main>
+
+    <main class="app-shell hidden" id="dashboardScreen">
+      <aside class="sidebar">
+        <div class="side-brand"><span class="brand-mark small">⌖</span><div><strong>LOCALIZADOR</strong><small>GPS CONTROL</small></div></div>
+        <nav>
+          <button class="nav-item active" data-page="overview"><span>▦</span> Visão geral</button>
+          <button class="nav-item" data-page="devices"><span>▣</span> Dispositivos</button>
+          <button class="nav-item" data-page="links"><span>↗</span> Gerar link</button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="user-mini"><div class="avatar">A</div><div><strong id="sidebarEmail">Administrador</strong><small>Conta administradora</small></div></div>
+          <button class="logout" id="logoutBtn">↪ Sair da conta</button>
+        </div>
+      </aside>
+
+      <section class="main-area">
+        <header class="topbar">
+          <div><p class="eyebrow">PAINEL ADMINISTRATIVO</p><h1 id="pageTitle">Visão geral</h1></div>
+          <div class="top-actions"><span class="secure-pill"><i></i> Ambiente de demonstração</span><button class="icon-button" id="profileBtn" title="Perfil">A</button></div>
+        </header>
+
+        <section class="page active" id="page-overview">
+          <div class="welcome-row"><div><h2>Olá, administrador.</h2><p class="muted">Acompanhe os dispositivos que você vinculou.</p></div><button class="primary" data-go="links">＋ Gerar novo link</button></div>
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-icon blue">▣</div><p>Dispositivos cadastrados</p><strong id="totalDevices">0</strong><small>Total de vínculos criados</small></article>
+            <article class="stat-card"><div class="stat-icon green">●</div><p>Transmitindo agora</p><strong id="onlineDevices">0</strong><small>Compartilhamento ativo</small></article>
+            <article class="stat-card"><div class="stat-icon amber">↗</div><p>Convites pendentes</p><strong id="pendingLinks">0</strong><small>Aguardando vinculação</small></article>
+          </div>
+          <div class="section-heading"><div><h3>Seus dispositivos</h3><p class="muted">Status e informações dos vínculos.</p></div><button class="ghost" data-go="devices">Ver todos →</button></div>
+          <div class="table-card" id="overviewDevices"></div>
+          <div class="info-banner"><span>ⓘ</span><div><strong>Sobre esta versão</strong><p>Esta V1 demonstra a interface e o fluxo de convites. A localização real, autenticação segura e sincronização entre aparelhos serão implementadas nas próximas etapas.</p></div></div>
+        </section>
+
+        <section class="page" id="page-devices">
+          <div class="section-heading"><div><h2>Dispositivos</h2><p class="muted">Gerencie os celulares vinculados à sua conta.</p></div><button class="primary" data-go="links">＋ Gerar convite</button></div>
+          <div class="table-card" id="allDevices"></div>
+        </section>
+
+        <section class="page" id="page-links">
+          <div class="form-panel">
+            <div class="panel-icon">↗</div><p class="eyebrow">NOVO CONVITE</p><h2>Vincular um celular</h2>
+            <p class="muted">Crie um link individual para enviar ao aparelho que compartilhará a localização. A pessoa deverá abrir o link, ler as informações e autorizar o compartilhamento.</p>
+            <form id="linkForm">
+              <label for="deviceName">Nome para identificar o aparelho</label>
+              <input id="deviceName" maxlength="40" placeholder="Ex.: Celular da equipe" required>
+              <button class="primary full" type="submit">Gerar link de vinculação</button>
+            </form>
+            <div class="generated-link hidden" id="generatedLink">
+              <div class="success-line">✓ Convite demonstrativo criado</div>
+              <label for="linkOutput">Link de vinculação</label>
+              <div class="copy-row"><input id="linkOutput" readonly><button class="secondary" id="copyLink" type="button">Copiar</button></div>
+              <p class="tiny muted">Neste protótipo, o link é apenas ilustrativo. Ele ainda não consegue registrar o aparelho em outro dispositivo.</p>
+            </div>
+          </div>
+          <div class="steps-card"><h3>Como funciona o vínculo</h3><ol><li>Gere um convite com um nome identificador.</li><li>Envie o link para o celular que participará do compartilhamento.</li><li>No celular, a pessoa confirma que deseja compartilhar a localização.</li><li>O dispositivo aparecerá no painel após a integração com o servidor.</li></ol></div>
+        </section>
+        <footer>LOCALIZADOR GPS <span>V1.0 • Protótipo de interface</span></footer>
+      </section>
+    </main>
+
+    <main class="transmitter-shell hidden" id="transmitterScreen">
+      <section class="transmitter-card">
+        <div class="brand-mark">⌖</div><p class="eyebrow">LOCALIZADOR GPS</p>
+        <h1>Compartilhamento de localização</h1>
+        <p class="muted">Este aparelho foi convidado a compartilhar sua localização com um administrador.</p>
+        <div class="permission-box"><strong>Antes de continuar</strong><p>Ao conectar, o navegador solicitará permissão para acessar a localização deste aparelho. A transmissão só começa após sua autorização e pode ser interrompida nesta tela.</p></div>
+        <label for="transmitterName">Nome deste aparelho</label><input id="transmitterName" placeholder="Ex.: Meu celular">
+        <button class="primary full" id="startSharing">Conectar e compartilhar localização</button>
+        <button class="danger-outline full hidden" id="stopSharing">Interromper compartilhamento</button>
+        <div class="sharing-status" id="sharingStatus">Compartilhamento desativado.</div>
+        <p class="tiny muted">Demonstração V1: esta tela ainda não envia coordenadas para o painel administrativo. A integração será adicionada na próxima etapa.</p>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
